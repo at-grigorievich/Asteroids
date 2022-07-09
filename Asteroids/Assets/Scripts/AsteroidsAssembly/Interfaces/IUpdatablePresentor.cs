@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsAssembly.Interfaces
 {
-    public interface IUpdatable: IEnable
+    public interface IUpdatablePresentor: IEnable
     {
         void Update();
     }

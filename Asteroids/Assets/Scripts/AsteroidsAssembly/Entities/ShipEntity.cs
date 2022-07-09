@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using AsteroidsAssembly.Interfaces;
 using AsteroidsAssembly.TransformLogic;
 using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class ShipEntity: PhysicEntity
+    public class ShipEntity: BehaviourEntity
     {
         [SerializeField] private MovementData _movementData;
         
@@ -16,26 +18,31 @@ namespace AsteroidsAssembly.Entities
 
             _inputService = new PlayerInput();
 
+            _presentors = new List<IUpdatablePresentor>();
+            
             CreateTransformView();
             //CreatePhysicView();
         }
 
-        protected override void CreateTransformView()
+        private void CreateTransformView()
         {
             ITransformViewer transformViewer = new TransformObjectView(_transform);
 
+            TransformDataContainer transformContainer = new TransformDataContainer(_transform);
+            
             IMovementBehaviour movementBehaviour = new ShipMovementBehaviour(
                     _inputService.Player.Move,
                     _inputService.Player.Rotate,
-                    _movementData);
+                    _movementData,
+                    transformContainer);
 
             TransformObjectModel transformModel = new TransformObjectModel(movementBehaviour,
                     _transform.position, _transform.eulerAngles);
             
-            _updatePresentor = new TransformObjectPresentor(transformViewer,transformModel);
+            _presentors.Add(new TransformObjectPresentor(transformViewer,transformModel));
         }
 
-        protected override void CreatePhysicView()
+        private void CreatePhysicView()
         {
             throw new NotImplementedException();
         }

@@ -21,6 +21,7 @@ namespace AsteroidsAssembly.TransformLogic
         public void UpdateTransform()
         {
             CurrentPosition = _movementBehaviour.GetNextPosition();
+            
             CurrentRotation = _movementBehaviour.GetNextRotation(CurrentRotation);
         }
     }

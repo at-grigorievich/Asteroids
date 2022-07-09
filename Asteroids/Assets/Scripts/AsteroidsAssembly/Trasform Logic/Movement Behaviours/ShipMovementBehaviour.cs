@@ -9,16 +9,18 @@ namespace AsteroidsAssembly.TransformLogic
         private readonly InputAction _rotateInput;
 
         private readonly MovementData _movementData;
+        private readonly TransformDataContainer _transformDataContainer;
         
         private float _accelerationValue;
         
         public ShipMovementBehaviour(InputAction moveInput,InputAction rotateInput, 
-            MovementData movementData)
+            MovementData movementData, TransformDataContainer transformViewer)
         {
             _moveInput = moveInput;
             _rotateInput = rotateInput;
 
             _movementData = movementData;
+            _transformDataContainer = transformViewer;
             
             _moveInput.Enable();
             _rotateInput.Enable();
@@ -29,8 +31,10 @@ namespace AsteroidsAssembly.TransformLogic
             UpdateAcceleration();
 
             float defaultSpeed = _movementData.DefaultMovementSpeed;
+
+            Vector2 direction = Vector2.up * defaultSpeed * _accelerationValue * Time.deltaTime;
             
-            return Vector2.up*defaultSpeed*_accelerationValue*Time.deltaTime;
+            return _transformDataContainer.GetTransformPosition(direction);
         }
 
         public Vector3 GetNextRotation(Vector3 curRotation)

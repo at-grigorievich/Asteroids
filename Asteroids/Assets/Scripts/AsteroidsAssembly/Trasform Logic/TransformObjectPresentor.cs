@@ -3,7 +3,7 @@ using AsteroidsAssembly.Interfaces;
 
 namespace AsteroidsAssembly.TransformLogic
 {
-    public class TransformObjectPresentor: IUpdatable
+    public class TransformObjectPresentor: IUpdatablePresentor
     {
         private readonly ITransformViewer _transformViewer;
         private readonly TransformObjectModel _transformModel;
@@ -36,7 +36,10 @@ namespace AsteroidsAssembly.TransformLogic
         {
             _transformModel.UpdateTransform();
 
+            
             _transformViewer.UpdatePosition(_transformModel.CurrentPosition);
+            
+            
             _transformViewer.UpdateRotation(_transformModel.CurrentRotation);
         }
     }
