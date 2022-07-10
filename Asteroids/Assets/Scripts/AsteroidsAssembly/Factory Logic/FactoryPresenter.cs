@@ -6,8 +6,8 @@ namespace AsteroidsAssembly.FactoryLogic
 {
     public class FactoryPresenter<T>: IUpdatablePresentor where T: BehaviourEntity
     {
-        private readonly IFactoryViewer<T> _factoryViewer;
-        private readonly FactoryModel<T> _factoryModel;
+        protected readonly IFactoryViewer<T> _factoryViewer;
+        protected readonly FactoryModel<T> _factoryModel;
 
         private Action _updateModelTimer;
         
@@ -17,28 +17,29 @@ namespace AsteroidsAssembly.FactoryLogic
             _factoryViewer = factoryViewer;
         }
 
-        public void Enable()
+        public virtual void Enable()
         {
-            _updateModelTimer += UpdateModelTimer;
+            _updateModelTimer += UpdateTimer;
             _factoryModel.OnTimerExit += OnModelTimerExit;
         }
         
-        public void Disable()
+        public virtual void Disable()
         {
-            _updateModelTimer -= UpdateModelTimer;
+            _updateModelTimer -= UpdateTimer;
             _factoryModel.OnTimerExit -= OnModelTimerExit;
         }
 
-        public void Update()
-        {
-            _updateModelTimer?.Invoke();
-        }
+        public void Update() => _updateModelTimer?.Invoke();
+        
 
-        private void OnModelTimerExit()
+        protected virtual void OnModelTimerExit() => DoSpawn();
+        protected void DoSpawn()
         {
+            _factoryModel.ResetTimer();
             _factoryViewer.SetupObjectInWorld(_factoryModel.Instance);
         }
         
-        private void UpdateModelTimer() => _factoryModel.UpdateTimer();
+        private void UpdateTimer() => _factoryModel.UpdateTimer();
+
     }
 }

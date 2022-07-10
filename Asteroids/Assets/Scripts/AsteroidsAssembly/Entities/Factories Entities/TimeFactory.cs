@@ -14,7 +14,8 @@ namespace AsteroidsAssembly.Entities
             _camera = Camera.main;
         }
 
-        protected void CreateFactory<T>(T instance,IFactorySetupBehaviour<T> spawner)
+        protected void CreateFactory<T>(T instance,
+            IFactorySetupBehaviour<T> spawner)
             where T: BehaviourEntity
         {
             var factoryViewer =
@@ -23,8 +24,7 @@ namespace AsteroidsAssembly.Entities
             var factoryModel =
                 new FactoryModel<T>(instance, _factoryData.DelayTime);
 
-            var factoryPresenter =
-                new FactoryPresenter<T>(factoryViewer, factoryModel);
+            var factoryPresenter = new FactoryPresenter<T>(factoryViewer, factoryModel);
             
             _presentors.Add(factoryPresenter);
         }

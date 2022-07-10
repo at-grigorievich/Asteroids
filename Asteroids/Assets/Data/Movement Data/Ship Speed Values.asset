@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb2b146e6e24ef8a7065117d31e3b89, type: 3}
   m_Name: Ship Speed Values
   m_EditorClassIdentifier: 
-  <DefaultMovementSpeed>k__BackingField: 6
+  <DefaultMovementSpeed>k__BackingField: 5
   <DefaultRotateSpeed>k__BackingField: 266
   <AccelerationCoef>k__BackingField: 0.85
   <SlowdownCoef>k__BackingField: 0.6

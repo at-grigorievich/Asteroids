@@ -429,6 +429,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3102548398276005502, guid: bdc053f1048fde04e96907c53a8d04c1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3102548400126132944, guid: bdc053f1048fde04e96907c53a8d04c1, type: 3}
       propertyPath: m_Name
       value: Player Ship

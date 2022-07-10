@@ -9,7 +9,9 @@ namespace AsteroidsAssembly.Entities
     public class ShipEntity: BehaviourEntity
     {
         [SerializeField] private MovementData _movementData;
-        
+        [Space(15)] 
+        [SerializeField] private BulletFactory _bulletFactory;
+
         private PlayerInput _inputService;
         
         private new void Awake()
@@ -21,6 +23,7 @@ namespace AsteroidsAssembly.Entities
             _presentors = new List<IUpdatablePresentor>();
             
             CreateTransformView();
+            CreateBulletFactory();
             //CreatePhysicView();
         }
 
@@ -42,6 +45,11 @@ namespace AsteroidsAssembly.Entities
             _presentors.Add(new TransformObjectPresentor(transformViewer,transformModel));
         }
 
+        private void CreateBulletFactory()
+        {
+            _bulletFactory.CreateFactory(_inputService.Player.Shoot);
+        }
+        
         private void CreatePhysicView()
         {
             throw new NotImplementedException();

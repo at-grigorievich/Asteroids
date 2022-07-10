@@ -1,5 +1,4 @@
 ﻿using AsteroidsAssembly.Entities;
-using AsteroidsAssembly.Interfaces;
 
 namespace AsteroidsAssembly.FactoryLogic
 {

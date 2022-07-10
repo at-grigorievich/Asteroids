@@ -1,13 +1,12 @@
 ﻿using System;
 using AsteroidsAssembly.Entities;
-using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
     public class FactoryModel<T> where T: BehaviourEntity
     {
         private readonly float _delay;
-        private float _currentTime;
+        private readonly Timer _timer;
         
         public readonly T Instance;
         
@@ -17,17 +16,13 @@ namespace AsteroidsAssembly.FactoryLogic
         {
             _delay = delay;
             Instance = instance;
+
+            _timer = new Timer();
+            
+            ResetTimer();
         }
         
-        public void UpdateTimer()
-        {
-            _currentTime += Time.deltaTime;
-
-            if (_currentTime >= _delay)
-            {
-                _currentTime = default;
-                OnTimerExit?.Invoke();
-            }
-        }
+        public void ResetTimer() => _timer.SetupTimer(_delay);
+        public virtual void UpdateTimer() => _timer.UpdateTimer(() => OnTimerExit?.Invoke());
     }
 }

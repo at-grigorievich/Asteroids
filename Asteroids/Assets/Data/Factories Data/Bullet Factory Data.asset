@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dab4e19cd4a463d990c23389d5dfd63, type: 3}
-  m_Name: Asteroid Factory Data
+  m_Name: Bullet Factory Data
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 1570348964377312727, guid: ba8294779b9f6e242950b470e23a693b, type: 3}
-  <DelayTime>k__BackingField: 3
+  <Prefab>k__BackingField: {fileID: 4512690142556700767, guid: 61a9ef6639f5a97488199ec5def4a3d6, type: 3}
+  <DelayTime>k__BackingField: 0.25
