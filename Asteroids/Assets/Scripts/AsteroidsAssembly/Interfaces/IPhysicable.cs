@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsAssembly.Interfaces
 {
-    public interface IPhysicable: IEnable
+    public interface Physicable: IEnable
     {
         
     }
