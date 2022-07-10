@@ -17,7 +17,7 @@ namespace AsteroidsAssembly.TransformLogic
         {
             Vector3 nextObjectPos = nextPosition;
             
-            CheckOutFromRect(ref nextObjectPos);
+            //CheckOutFromRect(ref nextObjectPos);
 
             _transform.localPosition = nextObjectPos;
         }

@@ -1,5 +1,4 @@
 ﻿using AsteroidsAssembly.Entities;
-using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {

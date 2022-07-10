@@ -17,7 +17,7 @@ namespace AsteroidsAssembly.Entities
         private void OnEnable() => CallPresentors(p => p.Enable());
         private void OnDisable() => CallPresentors(p => p.Disable());
 
-        private void CallPresentors(Action<IUpdatablePresentor> method) =>
+        protected void CallPresentors(Action<IUpdatablePresentor> method) =>
             _presentors?.ForEach(e => method?.Invoke(e));
     }
 }

@@ -3,22 +3,24 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class RandomDirectionSpawner<T>: IFactorySetupBehaviour<T> where T: BehaviourEntity
+    public class RandomDirectionSpawner<T>: 
+        IFactorySetupBehaviour<T> where T: BehaviourEntity
     {
-        private readonly Camera _camera;
+        protected readonly Camera _camera;
+
+        protected T _instance;
         
         public RandomDirectionSpawner(Camera camera)
         {
             _camera = camera;
         }
         
-        public void Setup(T setupObject)
+        public virtual void Setup(T setupObject)
         {
-            var instance = GameObject.Instantiate(setupObject);
-            instance.transform.position = GenerateSpawnPosition(_camera);
+            _instance = GameObject.Instantiate(setupObject);
         }
-
-        private static Vector2 GenerateSpawnPosition(Camera camera)
+        
+        public static Vector2 GenerateSpawnPosition(Camera camera)
         {
             Vector3 rnd = (Vector3)Random.insideUnitCircle.normalized 
                           + new Vector3(0.5f, 0.5f,-10f);

@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dab4e19cd4a463d990c23389d5dfd63, type: 3}
-  m_Name: Asteroid Factory Data
+  m_Script: {fileID: 11500000, guid: 9bb2b146e6e24ef8a7065117d31e3b89, type: 3}
+  m_Name: Ufo Speed Values
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 1570348964377312727, guid: ba8294779b9f6e242950b470e23a693b, type: 3}
-  <DelayTime>k__BackingField: 2
+  <DefaultMovementSpeed>k__BackingField: 1.5
+  <DefaultRotateSpeed>k__BackingField: 1
+  <AccelerationCoef>k__BackingField: 0
+  <SlowdownCoef>k__BackingField: 0

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using AsteroidsAssembly.FactoryLogic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.TransformLogic;
+using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class AsteroidFactory: TimeFactory
+    public class UfoFactory: TimeFactory
     {
+        [SerializeField] private ShipEntity _playerShip;
+        
         private new void Awake()
         {
             base.Awake();
-            
+
             _presentors = new List<IUpdatablePresentor>();
             
             CreateFactory();
@@ -18,11 +22,13 @@ namespace AsteroidsAssembly.Entities
 
         private void CreateFactory()
         {
-            if (_factoryData.Prefab is AsteroidEntity asteroidEntity)
+            if (_factoryData.Prefab is UfoEntity asteroidEntity)
             {
-                var asteroidSpawner = new AsteroidSpawner(_camera);
+                TransformDataContainer targetContainer =
+                    new TransformDataContainer(_playerShip.transform);
+                var ufoSpawner = new UfoSpawner(_camera,targetContainer);
 
-                CreateFactory(asteroidEntity,asteroidSpawner);
+                CreateFactory(asteroidEntity,ufoSpawner);
             }
             else throw new ArgumentException("Prefab not an Asteroid !");
         }
