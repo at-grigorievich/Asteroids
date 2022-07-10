@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AsteroidsAssembly.FactoryLogic;
 using AsteroidsAssembly.Interfaces;
-using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
@@ -24,16 +23,7 @@ namespace AsteroidsAssembly.Entities
                 var spawnerBehaviour =
                     new RandomDirectionSpawner<AsteroidEntity>(_camera);
 
-                var factoryViewer =
-                    new FactoryViewer<AsteroidEntity>(spawnerBehaviour);
-
-                var factoryModel =
-                    new FactoryModel<AsteroidEntity>(asteroidEntity, _factoryData.DelayTime);
-
-                var factoryPresenter =
-                    new FactoryPresenter<AsteroidEntity>(factoryViewer, factoryModel);
-                
-                _presentors.Add(factoryPresenter);
+                CreateFactory(asteroidEntity,spawnerBehaviour);
             }
             else throw new ArgumentException("Prefab not an Asteroid !");
         }
