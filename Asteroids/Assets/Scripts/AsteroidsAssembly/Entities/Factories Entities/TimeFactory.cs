@@ -18,15 +18,23 @@ namespace AsteroidsAssembly.Entities
             IFactorySetupBehaviour<T> spawner)
             where T: BehaviourEntity
         {
+            var (factoryViewer, factoryModel) = CreateMVP(instance, spawner);
+            var factoryPresenter = new FactoryPresenter<T>(factoryViewer, factoryModel);
+            
+            _presentors.Add(factoryPresenter);
+        }
+
+        protected (FactoryViewer<T>, FactoryModel<T>) CreateMVP<T>
+            (T instance, IFactorySetupBehaviour<T> spawner)
+            where T : BehaviourEntity
+        {
             var factoryViewer =
                 new FactoryViewer<T>(spawner);
 
             var factoryModel =
                 new FactoryModel<T>(instance, _factoryData.DelayTime);
 
-            var factoryPresenter = new FactoryPresenter<T>(factoryViewer, factoryModel);
-            
-            _presentors.Add(factoryPresenter);
+            return (factoryViewer, factoryModel);
         }
     }
 }

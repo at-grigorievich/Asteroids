@@ -24,9 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Left Shoot",
                     "type": "Button",
                     "id": "527ed6f3-c72b-4861-8f64-88b4dcba2e7f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right Shoot",
+                    "type": "Button",
+                    "id": "59a0e370-7c26-4c71-a729-9392d746bb6a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -85,7 +94,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Shoot",
+                    "action": "Left Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -154,6 +163,17 @@
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5674a4f9-bbeb-43eb-8f9c-910905c26c3e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Right Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

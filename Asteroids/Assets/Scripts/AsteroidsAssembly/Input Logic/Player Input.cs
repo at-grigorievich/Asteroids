@@ -46,9 +46,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""Left Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""527ed6f3-c72b-4861-8f64-88b4dcba2e7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""59a0e370-7c26-4c71-a729-9392d746bb6a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -107,7 +116,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Shoot"",
+                    ""action"": ""Left Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -176,6 +185,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5674a4f9-bbeb-43eb-8f9c-910905c26c3e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Right Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -203,7 +223,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_LeftShoot = m_Player.FindAction("Left Shoot", throwIfNotFound: true);
+        m_Player_RightShoot = m_Player.FindAction("Right Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -265,14 +286,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Rotate;
-    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_LeftShoot;
+    private readonly InputAction m_Player_RightShoot;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @LeftShoot => m_Wrapper.m_Player_LeftShoot;
+        public InputAction @RightShoot => m_Wrapper.m_Player_RightShoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -288,9 +311,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
-                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @LeftShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShoot;
+                @LeftShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShoot;
+                @LeftShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShoot;
+                @RightShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightShoot;
+                @RightShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightShoot;
+                @RightShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightShoot;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -301,9 +327,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
+                @LeftShoot.started += instance.OnLeftShoot;
+                @LeftShoot.performed += instance.OnLeftShoot;
+                @LeftShoot.canceled += instance.OnLeftShoot;
+                @RightShoot.started += instance.OnRightShoot;
+                @RightShoot.performed += instance.OnRightShoot;
+                @RightShoot.canceled += instance.OnRightShoot;
             }
         }
     }
@@ -321,6 +350,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
+        void OnLeftShoot(InputAction.CallbackContext context);
+        void OnRightShoot(InputAction.CallbackContext context);
     }
 }

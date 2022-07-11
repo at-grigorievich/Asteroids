@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AsteroidsAssembly.GunLogic;
 using AsteroidsAssembly.Interfaces;
 using AsteroidsAssembly.TransformLogic;
 using UnityEngine;
@@ -9,7 +10,8 @@ namespace AsteroidsAssembly.Entities
     public class ShipEntity: MovementEntity
     {
         [Space(15)] 
-        [SerializeField] private BulletFactory _bulletFactory;
+        [SerializeField] private GunFactory _bulletFactory;
+        [SerializeField] private GunFactory _laserFactory;
 
         private PlayerInput _inputService;
         
@@ -23,6 +25,8 @@ namespace AsteroidsAssembly.Entities
             
             CreateTransformView();
             CreateBulletFactory();
+            CreateLaserFactory();
+            
             //CreatePhysicView();
         }
 
@@ -46,8 +50,26 @@ namespace AsteroidsAssembly.Entities
 
         private void CreateBulletFactory()
         {
-            _bulletFactory.CreateFactory(_inputService.Player.Shoot);
+            var (view,model) = 
+                _bulletFactory.CreateFactory();
+
+            var bulletPresentor =
+                new BulletFactoryPresenter(_inputService.Player.LeftShoot,view,model);
+            
+            _presentors.Add(bulletPresentor);
         }
+        
+        private void CreateLaserFactory()
+        {
+            var (view,model) = 
+                _laserFactory.CreateCounterFactory();
+
+            var laserPresentor =
+                new LaserFactoryPresenter(_inputService.Player.RightShoot,view,model);
+            
+            _presentors.Add(laserPresentor);
+        }
+        
         
         private void CreatePhysicView()
         {

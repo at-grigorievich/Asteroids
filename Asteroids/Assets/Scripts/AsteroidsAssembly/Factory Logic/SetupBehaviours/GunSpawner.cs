@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class BulletSpawner: IFactorySetupBehaviour<GunEntity>
+    public class GunSpawner: IFactorySetupBehaviour<GunEntity>
     {
         private readonly Transform _spawnPoint;
 
-        public BulletSpawner(Transform spawnPoint)
+        public GunSpawner(Transform spawnPoint)
         {
             _spawnPoint = spawnPoint;
         }
