@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using AsteroidsAssembly.EnemyLogic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.LifecycleLogic;
 using AsteroidsAssembly.TransformLogic;
 using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class AsteroidEntity : MovementEntity, IEnemy
+    public class AsteroidEntity : MovementEntity, IDestroyable
     {
         public void Init(Vector3 direction)
         {

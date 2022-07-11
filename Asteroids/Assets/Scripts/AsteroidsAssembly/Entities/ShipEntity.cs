@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using AsteroidsAssembly.GunLogic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.LifecycleLogic;
 using AsteroidsAssembly.TransformLogic;
 using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
+    [RequireComponent(typeof(Collider2D))]
     public class ShipEntity: MovementEntity
     {
         [Space(15)] 
         [SerializeField] private GunFactory _bulletFactory;
         [SerializeField] private GunFactory _laserFactory;
 
+        private Collider2D _collider;
         private PlayerInput _inputService;
+
+        private ICollisionablePresentor _collisionPresentor;
         
         private new void Awake()
         {
@@ -24,9 +29,11 @@ namespace AsteroidsAssembly.Entities
             _presentors = new List<IUpdatablePresentor>();
             
             CreateTransformView();
+            
             CreateBulletFactory();
             CreateLaserFactory();
             
+            CreateLifecycle();
             //CreatePhysicView();
         }
 
@@ -58,7 +65,6 @@ namespace AsteroidsAssembly.Entities
             
             _presentors.Add(bulletPresentor);
         }
-        
         private void CreateLaserFactory()
         {
             var (view,model) = 
@@ -69,11 +75,23 @@ namespace AsteroidsAssembly.Entities
             
             _presentors.Add(laserPresentor);
         }
-        
-        
-        private void CreatePhysicView()
+
+        private void CreateLifecycle()
         {
-            throw new NotImplementedException();
+            _collider = GetComponent<Collider2D>();
+            
+            ILifecycleBehaviour lifecycleBehaviour = new DieLifeBehaviour();
+            ILifecycleViewer _viewer = new LifecycleViewer(_collider, lifecycleBehaviour);
+            LifecycleModel model = new LifecycleModel(10);
+
+            _collisionPresentor = new LifecyclePresentor(_viewer, model);
+            _collisionPresentor.Enable();
+        }
+        
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            Debug.Log("Afasfsf");
+            _collisionPresentor.StartCollision(col);
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using AsteroidsAssembly.EnemyLogic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.LifecycleLogic;
 using AsteroidsAssembly.TransformLogic;
-using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class UfoEntity: MovementEntity, IEnemy
+    public class UfoEntity: MovementEntity, IDestroyable
     {
         public void Init(TransformDataContainer targetTransform)
         {
