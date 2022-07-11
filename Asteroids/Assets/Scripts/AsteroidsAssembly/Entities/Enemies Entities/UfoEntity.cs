@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class UfoEntity: BehaviourEntity, IEnemy
+    public class UfoEntity: MovementEntity, IEnemy
     {
-        [SerializeField] private MovementData _movementData;
-        
         public void Init(TransformDataContainer targetTransform)
         {
             _presentors = new List<IUpdatablePresentor>();

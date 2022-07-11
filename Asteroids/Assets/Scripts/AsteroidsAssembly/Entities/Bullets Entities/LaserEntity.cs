@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsAssembly.Entities
 {
-    public class BulletEntity: GunEntity
+    public class LaserEntity: GunEntity
     {
         protected override void CreatePhysicView()
         {

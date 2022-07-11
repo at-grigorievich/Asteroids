@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class BulletSpawner: IFactorySetupBehaviour<BulletEntity>
+    public class BulletSpawner: IFactorySetupBehaviour<GunEntity>
     {
         private readonly Transform _spawnPoint;
 
@@ -12,7 +12,7 @@ namespace AsteroidsAssembly.FactoryLogic
             _spawnPoint = spawnPoint;
         }
         
-        public void Setup(BulletEntity setupObject)
+        public void Setup(GunEntity setupObject)
         {
             var instance = GameObject.Instantiate(setupObject, _spawnPoint);
             instance.transform.SetParent(null);

@@ -6,9 +6,8 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class ShipEntity: BehaviourEntity
+    public class ShipEntity: MovementEntity
     {
-        [SerializeField] private MovementData _movementData;
         [Space(15)] 
         [SerializeField] private BulletFactory _bulletFactory;
 

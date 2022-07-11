@@ -14,13 +14,13 @@ namespace AsteroidsAssembly.Entities
 
         public void CreateFactory(InputAction inputAction)
         {
-            if (_factoryData.Prefab is BulletEntity bulletEntity)
+            if (_factoryData.Prefab is GunEntity bulletEntity)
             {
                 var bulletSpawner = new BulletSpawner(_spawnPoint);
 
-                var factoryViewer = new FactoryViewer<BulletEntity>(bulletSpawner);
+                var factoryViewer = new FactoryViewer<GunEntity>(bulletSpawner);
                 var factoryModel =
-                    new FactoryModel<BulletEntity>(bulletEntity, _factoryData.DelayTime);
+                    new FactoryModel<GunEntity>(bulletEntity, _factoryData.DelayTime);
 
                 BulletFactoryPresenter factoryPresenter =
                     new BulletFactoryPresenter(inputAction, factoryViewer, factoryModel);
