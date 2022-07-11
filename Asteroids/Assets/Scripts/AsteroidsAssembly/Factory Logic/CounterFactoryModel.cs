@@ -1,5 +1,6 @@
 ﻿using System;
 using AsteroidsAssembly.Entities;
+using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
@@ -20,14 +21,14 @@ namespace AsteroidsAssembly.FactoryLogic
             _counterDelay = counterDelay;
 
             _counterTimer = new Timer();
-
-            _maxCount = maxCount;
+            
+            Count = _maxCount = maxCount;
         }
 
         public void ResetCounterTimer() => _counterTimer.SetupTimer(_counterDelay);
 
-        public void AddCount() => Count++;
-        public void RemoveCount() => Count--;
+        public void AddCount() => Count = Mathf.Clamp(++Count,0,_maxCount);
+        public void RemoveCount() => Count = Mathf.Clamp(--Count,0,_maxCount);
 
         public override void UpdateTimer()
         {

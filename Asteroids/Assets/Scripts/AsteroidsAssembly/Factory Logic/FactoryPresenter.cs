@@ -33,7 +33,7 @@ namespace AsteroidsAssembly.FactoryLogic
         
 
         protected virtual void OnModelTimerExit() => DoSpawn();
-        protected void DoSpawn()
+        protected virtual void DoSpawn()
         {
             _factoryModel.ResetTimer();
             _factoryViewer.SetupObjectInWorld(_factoryModel.Instance);
