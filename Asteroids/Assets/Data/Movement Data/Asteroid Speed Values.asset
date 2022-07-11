@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb2b146e6e24ef8a7065117d31e3b89, type: 3}
   m_Name: Asteroid Speed Values
   m_EditorClassIdentifier: 
-  <DefaultMovementSpeed>k__BackingField: 0.25
+  <DefaultMovementSpeed>k__BackingField: 3
   <DefaultRotateSpeed>k__BackingField: 1
   <AccelerationCoef>k__BackingField: 0
   <SlowdownCoef>k__BackingField: 0

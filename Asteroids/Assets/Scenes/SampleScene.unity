@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factoryData: {fileID: 11400000, guid: af572e275c78a554780564a2a2be86a2, type: 2}
+  _asteroidPartFactoryData: {fileID: 11400000, guid: 1e6e8edab6bf18946bf5a7da328e5c83, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

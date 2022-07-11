@@ -4,19 +4,16 @@ using AsteroidsAssembly.Interfaces;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class FactoryPresenter<T>: IUpdatablePresentor where T: BehaviourEntity
+    public class FactoryPresenter<T>: SimpleFactoryPresenter<T>,IUpdatablePresentor 
+        where T: BehaviourEntity
     {
-        protected readonly IFactoryViewer<T> _factoryViewer;
-        protected readonly FactoryModel<T> _factoryModel;
-
         private Action _updateModelTimer;
-        
-        public FactoryPresenter(IFactoryViewer<T> factoryViewer,FactoryModel<T> factoryModel)
-        {
-            _factoryModel = factoryModel;
-            _factoryViewer = factoryViewer;
-        }
 
+        public FactoryPresenter(IFactoryViewer<T> factoryViewer, FactoryModel<T> factoryModel) 
+            : base(factoryViewer, factoryModel)
+        {
+        }
+        
         public virtual void Enable()
         {
             _updateModelTimer += UpdateTimer;
@@ -33,13 +30,13 @@ namespace AsteroidsAssembly.FactoryLogic
         
 
         protected virtual void OnModelTimerExit() => DoSpawn();
-        protected virtual void DoSpawn()
+        protected override void DoSpawn()
         {
             _factoryModel.ResetTimer();
-            _factoryViewer.SetupObjectInWorld(_factoryModel.Instance);
+            base.DoSpawn();
         }
         
         private void UpdateTimer() => _factoryModel.UpdateTimer();
-
+        
     }
 }

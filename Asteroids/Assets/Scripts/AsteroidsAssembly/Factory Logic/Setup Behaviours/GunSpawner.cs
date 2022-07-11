@@ -7,10 +7,8 @@ namespace AsteroidsAssembly.FactoryLogic
     {
         private readonly Transform _spawnPoint;
 
-        public GunSpawner(Transform spawnPoint)
-        {
-            _spawnPoint = spawnPoint;
-        }
+        public GunSpawner(Transform spawnPoint) => _spawnPoint = spawnPoint;
+        
         
         public void Setup(GunEntity setupObject)
         {
@@ -19,5 +17,9 @@ namespace AsteroidsAssembly.FactoryLogic
             
             instance.Init();
         }
+
+        public void Setup(GunEntity setupObject, Vector3 setupPosition, Vector3 setupDirection) =>
+            Setup(setupObject);
+        
     }
 }

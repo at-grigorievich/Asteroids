@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public abstract class GunEntity: MovementEntity
+    public abstract class GunEntity: PhysicEntity
     {
         public void Init()
         {
@@ -15,7 +15,9 @@ namespace AsteroidsAssembly.Entities
             Debug.DrawRay(_transform.position,direction*10f,Color.blue,10f);
 #endif           
             _presentors = new List<IUpdatablePresentor>();
+            
             CreateTransformView(direction);
+            CreateLifecycle();
             
             CallPresentors(p => p.Enable());
         }
@@ -36,7 +38,5 @@ namespace AsteroidsAssembly.Entities
             
             _presentors.Add(new TransformObjectPresentor(transformViewer,transformModel));
         }
-
-        protected abstract void CreatePhysicView();
     }
 }

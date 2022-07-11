@@ -1,4 +1,5 @@
-﻿using AsteroidsAssembly.Entities;
+﻿using UnityEngine;
+using AsteroidsAssembly.Entities;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
@@ -11,9 +12,13 @@ namespace AsteroidsAssembly.FactoryLogic
             _setupBehaviour = setupBehaviour;
         }
         
-        public void SetupObjectInWorld(T entity)
+        public void SetupObjectInWorld(T entity, 
+            Vector3? setupPosition = null, Vector3? setupDirection = null)
         {
-            _setupBehaviour.Setup(entity);
+            if(setupPosition == null)
+                _setupBehaviour.Setup(entity);
+            else if (setupDirection != null) 
+                _setupBehaviour.Setup(entity, setupPosition.Value, setupDirection.Value);
         }
     }
 }

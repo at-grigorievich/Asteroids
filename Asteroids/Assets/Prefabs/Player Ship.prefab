@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3826135135864822464}
   - component: {fileID: 9191467784891243162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet Factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8478245371124247881}
   - component: {fileID: 1511699162882818909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Laser Factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659735632496054612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3102548398276005503}
   - component: {fileID: 3102548398276005502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 3102548400126132949}
   - component: {fileID: 3102548400126132948}
   - component: {fileID: 3102548400126132951}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 128859073801944801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

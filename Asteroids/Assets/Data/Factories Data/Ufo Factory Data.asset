@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Ufo Factory Data
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 8804111283200286000, guid: 759ff0e38cca40b4c99fdfb1f7e6892e, type: 3}
-  <DelayTime>k__BackingField: 10
+  <DelayTime>k__BackingField: 8

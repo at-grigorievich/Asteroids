@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class MovementEntity: BehaviourEntity
+    public abstract class MovementEntity: BehaviourEntity
     {
         [SerializeField] protected MovementData _movementData;
     }

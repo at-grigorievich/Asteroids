@@ -22,7 +22,8 @@ namespace AsteroidsAssembly.LifecycleLogic
         {
             if (collision.gameObject.TryGetComponent(out IDestroyable destroyable))
             {
-                _lifecycleViewer.EndLifecycle(_lifecycleModel.Score);
+                _lifecycleViewer
+                    .EndLifecycle(_lifecycleModel.Score,collision.contacts[0].normal);
             }
         }
     }

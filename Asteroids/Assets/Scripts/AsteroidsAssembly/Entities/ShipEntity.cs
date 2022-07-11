@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AsteroidsAssembly.GunLogic;
 using AsteroidsAssembly.Interfaces;
 using AsteroidsAssembly.LifecycleLogic;
@@ -9,17 +8,14 @@ using UnityEngine;
 namespace AsteroidsAssembly.Entities
 {
     [RequireComponent(typeof(Collider2D))]
-    public class ShipEntity: MovementEntity
+    public class ShipEntity: PhysicEntity
     {
         [Space(15)] 
         [SerializeField] private GunFactory _bulletFactory;
         [SerializeField] private GunFactory _laserFactory;
-
-        private Collider2D _collider;
+        
         private PlayerInput _inputService;
 
-        private ICollisionablePresentor _collisionPresentor;
-        
         private new void Awake()
         {
             base.Awake();
@@ -34,7 +30,6 @@ namespace AsteroidsAssembly.Entities
             CreateLaserFactory();
             
             CreateLifecycle();
-            //CreatePhysicView();
         }
 
         private void CreateTransformView()
@@ -76,7 +71,7 @@ namespace AsteroidsAssembly.Entities
             _presentors.Add(laserPresentor);
         }
 
-        private void CreateLifecycle()
+        protected override void CreateLifecycle(ILifecycleBehaviour behaviour = null)
         {
             _collider = GetComponent<Collider2D>();
             
@@ -85,13 +80,7 @@ namespace AsteroidsAssembly.Entities
             LifecycleModel model = new LifecycleModel(10);
 
             _collisionPresentor = new LifecyclePresentor(_viewer, model);
-            _collisionPresentor.Enable();
-        }
-        
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            Debug.Log("Afasfsf");
-            _collisionPresentor.StartCollision(col);
+            //_collisionPresentor.Enable();
         }
     }
 }

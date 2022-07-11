@@ -21,8 +21,12 @@ namespace AsteroidsAssembly.LifecycleLogic
 
         public void EndLifecycle(int endScore)
         {
-            SetEnable(false);
             _lifecycleBehaviour.DoEndLifecycle(_collider.gameObject,endScore);
+        }
+
+        public void EndLifecycle(int endScore, Vector3 hitDirection)
+        {
+            _lifecycleBehaviour.DoEndLifecycle(_collider.gameObject,hitDirection,endScore);
         }
     }
 }
