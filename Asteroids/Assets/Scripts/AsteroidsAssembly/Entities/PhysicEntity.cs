@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AsteroidsAssembly.Entities
 {
     [RequireComponent(typeof(Collider2D))]
-    public abstract class PhysicEntity: MovementEntity, IDestroyable
+    public abstract class PhysicEntity: MovementEntity
     {
         protected Collider2D _collider;
         

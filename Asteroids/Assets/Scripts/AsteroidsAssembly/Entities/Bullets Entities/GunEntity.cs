@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.LifecycleLogic;
 using AsteroidsAssembly.TransformLogic;
 using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public abstract class GunEntity: PhysicEntity
+    public abstract class GunEntity: PhysicEntity,IDestroyable
     {
         public void Init()
         {

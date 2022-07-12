@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.LifecycleLogic;
 using AsteroidsAssembly.TransformLogic;
+using AsteroidsAssembly.UserInterface;
 using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class PartAsteroidEntity: PhysicEntity
+    public class PartAsteroidEntity: PhysicEntity,IDestroyable
     {
-        public void Init(Vector3 direction)
+        public void Init(Vector3 direction, UIScorePresentor scorePresentor)
         {
             _presentors = new List<IUpdatablePresentor>();
             
             CreateTransformView(direction);
-            CreateLifecycle();
+            CreateLifecycle(new DieLifeBehaviour(scorePresentor));
             
             CallPresentors(p => p.Enable());
         }

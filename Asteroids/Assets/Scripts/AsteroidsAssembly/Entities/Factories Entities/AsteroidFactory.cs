@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class AsteroidFactory: TimeFactory
+    public class AsteroidFactory: EnemyFactory
     {
         [SerializeField] protected FactoryData _asteroidPartFactoryData;
 
@@ -28,7 +28,9 @@ namespace AsteroidsAssembly.Entities
         {
             if (_factoryData.Prefab is AsteroidEntity asteroidEntity)
             {
-                var asteroidSpawner = new AsteroidSpawner(_camera, _asteroidPartFactory);
+                var asteroidSpawner = new AsteroidSpawner(_asteroidPartFactory,
+                    _uiReplayEntity.ScorePresentor,
+                    _camera);
 
                 CreateFactory(asteroidEntity,asteroidSpawner);
             }
@@ -39,7 +41,10 @@ namespace AsteroidsAssembly.Entities
         {
             if (_asteroidPartFactoryData.Prefab is PartAsteroidEntity partAsteroid)
             {
-                var partAsteroidSpawner = new PartAsteroidSpawner();
+                var partAsteroidSpawner = new PartAsteroidSpawner(
+                    _uiReplayEntity.ScorePresentor,
+                    _camera);
+                
                 var (viewer, model) = CreateMVP(partAsteroid,partAsteroidSpawner);
 
                 _asteroidPartFactory = new PartAsteroidFactory(viewer, model);

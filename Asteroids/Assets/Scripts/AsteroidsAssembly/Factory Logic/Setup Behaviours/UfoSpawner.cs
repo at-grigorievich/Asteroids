@@ -1,15 +1,17 @@
 ﻿using AsteroidsAssembly.Entities;
 using AsteroidsAssembly.TransformLogic;
+using AsteroidsAssembly.UserInterface;
 using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class UfoSpawner: RandomDirectionSpawner<UfoEntity>
+    public class UfoSpawner: EnemySpawner<UfoEntity>
     {
         private readonly TransformDataContainer _targetDataContainer;
 
-        public UfoSpawner(Camera camera, TransformDataContainer targetDataContainer)
-            : base(camera)
+        public UfoSpawner(TransformDataContainer targetDataContainer,
+            UIScorePresentor scorePresentor, Camera camera) 
+            : base(scorePresentor,camera)
         {
             _targetDataContainer = targetDataContainer;
         }
@@ -19,7 +21,7 @@ namespace AsteroidsAssembly.FactoryLogic
             base.Setup(setupObject);
             
             _instance.transform.position = GenerateSpawnPosition(_camera);
-            _instance.Init(_targetDataContainer);
+            _instance.Init(_targetDataContainer, _scorePresentor);
         }
     }
 }

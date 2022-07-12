@@ -1,5 +1,6 @@
 ﻿using System;
 using AsteroidsAssembly.LifecycleLogic;
+using AsteroidsAssembly.UserInterface;
 using UnityEngine;
 
 namespace AsteroidsAssembly.EnemiesLogic
@@ -13,10 +14,13 @@ namespace AsteroidsAssembly.EnemiesLogic
         public event EventHandler<int> OnDie;
         
         
-        public DevideAsteroidLifeBehaviour(PartAsteroidFactory partAsteroidFactory, int partCount)
+        public DevideAsteroidLifeBehaviour(UIScorePresentor scorePresentor,
+            PartAsteroidFactory partAsteroidFactory, int partCount)
         {
             _partAsteroidFactory = partAsteroidFactory;
             _partCount = partCount;
+
+            OnDie += scorePresentor.AddScore;
         }
 
         public void DoEndLifecycle(GameObject gameObject, int score)
@@ -29,7 +33,7 @@ namespace AsteroidsAssembly.EnemiesLogic
         {
             for (int i = 0; i < _partCount; i++)
             {
-                _partAsteroidFactory.SpawnByPosition(gameObject.transform.position,hitDirection);
+                _partAsteroidFactory.SpawnByPosition(hitDirection,hitDirection.normalized);
             }
             
             DoEndLifecycle(gameObject,score);

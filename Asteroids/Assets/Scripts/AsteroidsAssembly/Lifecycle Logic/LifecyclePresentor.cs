@@ -8,10 +8,15 @@ namespace AsteroidsAssembly.LifecycleLogic
         private readonly ILifecycleViewer _lifecycleViewer;
         private readonly LifecycleModel _lifecycleModel;
 
-        public LifecyclePresentor(ILifecycleViewer viewer, LifecycleModel lifecycleModel)
+        private readonly bool _isAllowDisable;
+        
+        public LifecyclePresentor(ILifecycleViewer viewer, LifecycleModel lifecycleModel, 
+            bool isAllowDisable = false)
         {
             _lifecycleViewer = viewer;
             _lifecycleModel = lifecycleModel;
+
+            _isAllowDisable = isAllowDisable;
         }
 
         public void Enable() => _lifecycleViewer.SetEnable(true);
@@ -22,8 +27,11 @@ namespace AsteroidsAssembly.LifecycleLogic
         {
             if (collision.gameObject.TryGetComponent(out IDestroyable destroyable))
             {
+                if(_isAllowDisable)
+                    Disable();
+                
                 _lifecycleViewer
-                    .EndLifecycle(_lifecycleModel.Score,collision.contacts[0].normal);
+                    .EndLifecycle(_lifecycleModel.Score,collision.contacts[0].point);
             }
         }
     }

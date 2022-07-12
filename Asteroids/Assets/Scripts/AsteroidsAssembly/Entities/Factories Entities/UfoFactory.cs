@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class UfoFactory: TimeFactory
+    public class UfoFactory: EnemyFactory
     {
         [SerializeField] private ShipEntity _playerShip;
         
@@ -26,7 +26,11 @@ namespace AsteroidsAssembly.Entities
             {
                 TransformDataContainer targetContainer =
                     new TransformDataContainer(_playerShip.transform);
-                var ufoSpawner = new UfoSpawner(_camera,targetContainer);
+                
+                var ufoSpawner = new UfoSpawner(
+                    targetContainer,
+                    _uiReplayEntity.ScorePresentor,
+                    _camera);
 
                 CreateFactory(asteroidEntity,ufoSpawner);
             }

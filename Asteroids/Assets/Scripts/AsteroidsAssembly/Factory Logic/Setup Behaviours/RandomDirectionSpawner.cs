@@ -20,7 +20,7 @@ namespace AsteroidsAssembly.FactoryLogic
             Setup(setupObject);
         
         
-        protected static Vector2 GenerateSpawnPosition(Camera camera)
+        protected Vector2 GenerateSpawnPosition(Camera camera)
         {
             Vector3 rnd = (Vector3)Random.insideUnitCircle.normalized 
                           + new Vector3(0.5f, 0.5f,-10f);
@@ -28,7 +28,7 @@ namespace AsteroidsAssembly.FactoryLogic
             return camera.ViewportToWorldPoint(rnd);
         }
         
-        protected static Vector2 GenerateRandomDirection(Camera camera, Transform transform)
+        protected Vector2 GenerateRandomDirection(Camera camera, Transform transform)
         {
             float xRnd = Mathf.Clamp(Random.value, 0.3f, 0.7f);
             float yRnd = Mathf.Clamp(Random.value, 0.3f, 0.7f);

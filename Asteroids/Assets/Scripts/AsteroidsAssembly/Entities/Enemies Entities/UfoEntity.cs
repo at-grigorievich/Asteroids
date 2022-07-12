@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using AsteroidsAssembly.Interfaces;
+using AsteroidsAssembly.LifecycleLogic;
 using AsteroidsAssembly.TransformLogic;
+using AsteroidsAssembly.UserInterface;
 
 namespace AsteroidsAssembly.Entities
 {
-    public class UfoEntity: PhysicEntity
+    public class UfoEntity: PhysicEntity,IDestroyable
     {
-        public void Init(TransformDataContainer targetTransform)
+        public void Init(TransformDataContainer targetTransform, UIScorePresentor scorePresentor)
         {
             _presentors = new List<IUpdatablePresentor>();
             CreateTransformView(targetTransform);
-            CreateLifecycle();
+            CreateLifecycle(new DieLifeBehaviour(scorePresentor));
             
             CallPresentors(p => p.Enable());
         }

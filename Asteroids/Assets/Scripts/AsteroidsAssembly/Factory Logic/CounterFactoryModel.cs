@@ -1,10 +1,12 @@
 ﻿using System;
 using AsteroidsAssembly.Entities;
+using AsteroidsAssembly.GunLogic;
 using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class CounterFactoryModel<T>: FactoryModel<T> where T: BehaviourEntity
+    public class CounterFactoryModel<T>: FactoryModel<T>, IGunParameters 
+        where T: BehaviourEntity
     {
         private readonly float _counterDelay;
         private readonly Timer _counterTimer;
@@ -12,8 +14,8 @@ namespace AsteroidsAssembly.FactoryLogic
         private readonly int _maxCount;
         
         public float TimeLeft => _counterTimer.CurrentTime;
-       
         public int Count { get; private set; }
+        
         
         public CounterFactoryModel(T instance, float delay, float counterDelay, int maxCount) 
             : base(instance, delay)

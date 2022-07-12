@@ -6,18 +6,23 @@ namespace AsteroidsAssembly.TransformLogic
     {
         private Transform _transform;
         private Camera _camera;
+
+        private readonly bool _isCheckRect;
         
-        public TransformObjectView(Transform transform)
+        public TransformObjectView(Transform transform, bool isCheckRect = false)
         {
             _transform = transform;
             _camera = Camera.main;
+
+            _isCheckRect = isCheckRect;
         }
 
         public void UpdatePosition(Vector2 nextPosition)
         {
             Vector3 nextObjectPos = nextPosition;
             
-            //CheckOutFromRect(ref nextObjectPos);
+            if(_isCheckRect)
+                CheckOutFromRect(ref nextObjectPos);
 
             _transform.localPosition = nextObjectPos;
         }

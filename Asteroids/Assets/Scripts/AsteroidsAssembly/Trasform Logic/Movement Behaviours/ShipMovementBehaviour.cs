@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace AsteroidsAssembly.TransformLogic
 {
-    public class ShipMovementBehaviour: IMovementBehaviour
+    public class ShipMovementBehaviour: IMovementBehaviour, IMovementParameters
     {
         private readonly InputAction _moveInput;
         private readonly InputAction _rotateInput;
@@ -12,6 +12,12 @@ namespace AsteroidsAssembly.TransformLogic
         private readonly TransformDataContainer _transformDataContainer;
         
         private float _accelerationValue;
+
+        public Vector2 CurrentCoordinates => _transformDataContainer.CurrentPosition;
+        public float CurrentAngle => _transformDataContainer.CurrentRotation.z;
+        public float AccelerationValue => _accelerationValue;
+        public float MomentSpeed => _movementData.DefaultMovementSpeed * _accelerationValue;
+        
         
         public ShipMovementBehaviour(InputAction moveInput,InputAction rotateInput, 
             MovementData movementData, TransformDataContainer transformViewer)
@@ -29,10 +35,8 @@ namespace AsteroidsAssembly.TransformLogic
         public Vector2 GetNextPosition()
         {
             UpdateAcceleration();
-
-            float defaultSpeed = _movementData.DefaultMovementSpeed;
-
-            Vector2 direction = Vector2.up * defaultSpeed * _accelerationValue * Time.deltaTime;
+            
+            Vector2 direction = Vector2.up * MomentSpeed * Time.deltaTime;
             
             return _transformDataContainer.GetTransformPosition(direction);
         }

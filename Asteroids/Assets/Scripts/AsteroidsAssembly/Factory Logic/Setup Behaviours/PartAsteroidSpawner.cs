@@ -1,20 +1,24 @@
 ﻿using AsteroidsAssembly.Entities;
+using AsteroidsAssembly.UserInterface;
 using UnityEngine;
 
 namespace AsteroidsAssembly.FactoryLogic
 {
-    public class PartAsteroidSpawner: IFactorySetupBehaviour<PartAsteroidEntity>
+    public class PartAsteroidSpawner: EnemySpawner<PartAsteroidEntity>
     {
-        public void Setup(PartAsteroidEntity setupObject){}
-
-        public void Setup(PartAsteroidEntity setupObject, 
+        public PartAsteroidSpawner(UIScorePresentor scorePresentor, Camera camera) 
+            : base(scorePresentor, camera) {}
+        
+        public override void Setup(PartAsteroidEntity setupObject, 
             Vector3 setupPosition, Vector3 setupDirection)
         {
-            var instance = GameObject.Instantiate(setupObject);
+            base.Setup(setupObject);
             
-            instance.transform.position = setupPosition + 1.5f*(Vector3)Random.insideUnitCircle;
+            _instance.transform.position =setupPosition + 1.5f*(Vector3)Random.insideUnitCircle;
             
-            instance.Init(RotateTowardsUp(setupDirection,180f*Random.value));
+            _instance.Init(
+                RotateTowardsUp(setupDirection,90f*Random.value),
+                _scorePresentor);
         }
         
         Vector3 RotateTowardsUp(Vector3 start, float angle)
