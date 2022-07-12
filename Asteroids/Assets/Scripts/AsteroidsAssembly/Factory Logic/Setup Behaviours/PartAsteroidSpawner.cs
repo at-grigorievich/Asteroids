@@ -17,7 +17,7 @@ namespace AsteroidsAssembly.FactoryLogic
             _instance.transform.position =setupPosition + 1.5f*(Vector3)Random.insideUnitCircle;
             
             _instance.Init(
-                RotateTowardsUp(setupDirection,90f*Random.value),
+                RotateTowardsUp(setupDirection,45f*Random.value),
                 _scorePresentor);
         }
         
