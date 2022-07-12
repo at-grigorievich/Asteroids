@@ -23,7 +23,6 @@ namespace AsteroidsAssembly.Entities
             CreateFactory();
         }
         
-
         private void CreateFactory()
         {
             if (_factoryData.Prefab is AsteroidEntity asteroidEntity)

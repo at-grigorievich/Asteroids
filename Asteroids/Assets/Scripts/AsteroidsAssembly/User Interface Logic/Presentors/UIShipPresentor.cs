@@ -16,20 +16,10 @@ namespace AsteroidsAssembly.UserInterface
             _model = model;
         }
         
-        public void Enable()
-        {
-            _updateUI += UpdateUI;
-        }
+        public void Enable() => _updateUI += UpdateUI;
+        public void Disable() => _updateUI -= UpdateUI;
         
-        public void Disable()
-        {
-            _updateUI -= UpdateUI;
-        }
-
-        public void Update()
-        {
-            _updateUI?.Invoke();
-        }
+        public void Update() => _updateUI?.Invoke();
         
         private void UpdateUI()
         {

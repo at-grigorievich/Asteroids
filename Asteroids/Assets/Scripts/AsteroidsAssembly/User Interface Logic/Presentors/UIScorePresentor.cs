@@ -20,15 +20,13 @@ namespace AsteroidsAssembly.UserInterface
             _replayBtn = btn;
         }
         
-        public void Enable() =>_replayBtn.onClick.AddListener(() => RestartGame());
-
+        public void Enable() => _replayBtn.onClick.AddListener(() => RestartGame());
         public void Disable()
         {
             _replayBtn.onClick.RemoveAllListeners();
             Time.timeScale = 1f;
         }
 
-        
         public void AddScore(object sender,int add) => _model.AddScore(add);
         
         public void ShowReplayView()

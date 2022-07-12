@@ -1,5 +1,4 @@
 ﻿using AsteroidsAssembly.Entities;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace AsteroidsAssembly.FactoryLogic
@@ -21,6 +20,7 @@ namespace AsteroidsAssembly.FactoryLogic
         {
             _inputAction.Enable();
             _inputAction.performed += TryInput;
+            
             base.Enable();
         }
         
@@ -33,8 +33,8 @@ namespace AsteroidsAssembly.FactoryLogic
         }
 
         protected override void OnModelTimerExit() => _isSpawnAvailable = true;
-        
-        protected void TryInput(InputAction.CallbackContext obj)
+
+        private void TryInput(InputAction.CallbackContext obj)
         {
             if (_isSpawnAvailable)
             {

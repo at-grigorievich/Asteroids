@@ -8,8 +8,6 @@ namespace AsteroidsAssembly.GunLogic
     {
         public BulletFactoryPresenter(InputAction inputAction, 
             IFactoryViewer<GunEntity> factoryViewer, FactoryModel<GunEntity> factoryModel) 
-            : base(inputAction, factoryViewer, factoryModel)
-        {
-        }
+            : base(inputAction, factoryViewer, factoryModel) {}
     }
 }

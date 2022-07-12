@@ -16,11 +16,9 @@ namespace AsteroidsAssembly.GunLogic
             _counterModel = factoryModel;
         }
 
-        protected override void OnModelTimerExit()
-        {
+        protected override void OnModelTimerExit() =>
             _isSpawnAvailable = _counterModel.Count > 0;
-        }
-
+        
         protected override void DoSpawn()
         {
             base.DoSpawn();

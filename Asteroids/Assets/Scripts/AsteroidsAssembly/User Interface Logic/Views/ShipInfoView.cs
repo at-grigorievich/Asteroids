@@ -27,11 +27,9 @@ namespace AsteroidsAssembly.UserInterface
     {
         private readonly ShipInfoContainer _shipInfoContainer;
 
-        public ShipInfoView(ShipInfoContainer shipInfoContainer)
-        {
+        public ShipInfoView(ShipInfoContainer shipInfoContainer) =>
             _shipInfoContainer = shipInfoContainer;
-        }
-
+        
         public void UpdateUI(ShipUIData data) => _shipInfoContainer.UpdateData(data);
     }
 }

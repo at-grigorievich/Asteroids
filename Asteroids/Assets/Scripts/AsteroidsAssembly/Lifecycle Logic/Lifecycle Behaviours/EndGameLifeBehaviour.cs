@@ -10,11 +10,9 @@ namespace AsteroidsAssembly.LifecycleLogic
 
         private readonly UIScorePresentor _scorePresentor;
         
-        public EndGameLifeBehaviour(UIScorePresentor scorePresentor)
-        {
+        public EndGameLifeBehaviour(UIScorePresentor scorePresentor) =>
             _scorePresentor = scorePresentor;
-        }
-
+        
         public void DoEndLifecycle(GameObject gameObject, int score) =>
             _scorePresentor.ShowReplayView();
 

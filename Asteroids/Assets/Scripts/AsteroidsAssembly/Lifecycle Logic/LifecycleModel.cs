@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace AsteroidsAssembly.LifecycleLogic
+﻿namespace AsteroidsAssembly.LifecycleLogic
 {
     public class LifecycleModel
     {
